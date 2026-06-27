@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Free Personality Reading</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f5f5f5;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#673ab7;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:15px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#673ab7;
+color:white;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#512da8;
+}
+
+#result{
+display:none;
+margin-top:25px;
+padding:20px;
+background:#f0fff4;
+border-radius:10px;
+line-height:1.8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✨ Free Personality Reading</h1>
+
+<input id="name" placeholder="Your Name">
+
+<label>Date of Birth</label>
+<input id="dob" type="date">
+
+<label>Time of Birth</label>
+<input id="time" type="time">
+
+<input id="place" placeholder="Place of Birth">
+
+<button onclick="submitData()">Get My Reading</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const scriptURL="https://script.google.com/macros/s/AKfycbxZifS7yOyK-wSh2VrcL6pISgIZa2xax-rGhcmThX6ztKwvsnBuMU5SKa6gLG2ONcvq/exec";
+
+const messages=[
+"You are a sweet and kind person. Success will reach you soon. Keep believing in yourself.",
+"Your future is bright. Stay positive because amazing opportunities are coming your way.",
+"You inspire people more than you realize. Keep working hard and success will follow.",
+"Your patience and determination will soon bring wonderful rewards.",
+"You have a beautiful heart. Great things are waiting for you in the near future.",
+"Your positive attitude attracts happiness and new opportunities."
+];
+
+function submitData(){
+
+const data={
+name:document.getElementById("name").value,
+dob:document.getElementById("dob").value,
+time:document.getElementById("time").value,
+place:document.getElementById("place").value
+};
+
+fetch(scriptURL,{
+method:"POST",
+body:JSON.stringify(data)
+})
+.then(r=>r.json())
+.then(res=>{
+
+let msg=messages[Math.floor(Math.random()*messages.length)];
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML=
+"<h2>🌟 Your Reading</h2><p>Hello <b>"+data.name+
+"</b>,</p><p>"+msg+
+"</p><p>Remember: Every day is a new opportunity to grow, learn and succeed. Believe in yourself!</p>";
+
+})
+.catch(err=>alert("Something went wrong."));
+}
+
+</script>
+
+</body>
+</html>
