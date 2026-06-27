@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Personality Reading</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#0f172a,#312e81,#581c87);
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:20px;
+width:100%;
+max-width:500px;
+box-shadow:0 0 25px rgba(0,0,0,.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0 18px;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#f59e0b;
+color:#fff;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#d97706;
+}
+
+#loading{
+display:none;
+text-align:center;
+margin-top:20px;
+}
+
+#reading{
+display:none;
+margin-top:25px;
+background:#ffffff22;
+padding:20px;
+border-radius:10px;
+line-height:1.8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✨ Free Personality Reading ✨</h1>
+
+<input id="name" placeholder="Your Name">
+
+<label>Date of Birth</label>
+<input type="date" id="dob">
+
+<label>Time of Birth</label>
+<input type="time" id="time">
+
+<input id="place" placeholder="Place of Birth">
+
+<button onclick="getReading()">Get My Reading</button>
+
+<div id="loading">
+Generating your reading...
+</div>
+
+<div id="reading"></div>
+
+</div>
+
+<script>
+
+const scriptURL="https://script.google.com/macros/s/AKfycbxZifS7yOyK-wSh2VrcL6pISgIZa2xax-rGhcmThX6ztKwvsnBuMU5SKa6gLG2ONcvq/exec";
+
+const readings=[
+"Your kindness is your greatest strength. Success is getting closer every day.",
+"You have a positive energy that attracts good opportunities. Stay confident.",
+"Wonderful things are waiting ahead. Keep believing in yourself.",
+"Your determination will soon be rewarded. Never stop dreaming.",
+"You inspire people without realizing it. Your future looks bright.",
+"A new opportunity may arrive sooner than you expect. Stay optimistic.",
+"Your patience and hard work will open doors for you.",
+"Your smile brings happiness to others. Great moments are ahead."
+];
+
+function getReading(){
+
+let data={
+name:document.getElementById("name").value,
+dob:document.getElementById("dob").value,
+time:document.getElementById("time").value,
+place:document.getElementById("place").value
+};
+
+if(data.dob==""||data.time==""||data.place==""){
+alert("Please fill all required fields.");
+return;
+}
+
+document.getElementById("loading").style.display="block";
+
+fetch(scriptURL,{
+method:"POST",
+body:JSON.stringify(data)
+})
+.then(res=>res.text())
+.then(()=>{
+
+let msg=readings[Math.floor(Math.random()*readings.length)];
+
+document.getElementById("loading").style.display="none";
+
+document.getElementById("reading").style.display="block";
+
+document.getElementById("reading").innerHTML=
+"<h2>🌟 Your Reading</h2>"+
+"<p>Hello <b>"+(data.name||"Friend")+"</b>,</p>"+
+"<p>"+msg+"</p>"+
+"<p>Believe in yourself and continue working towards your dreams. Every day is a new beginning filled with possibilities.</p>";
+
+})
+.catch(()=>{
+document.getElementById("loading").style.display="none";
+alert("Unable to save data. Please check your Apps Script deployment.");
+});
+
+}
+
+</script>
+
+</body>
+</html>
