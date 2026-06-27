@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+🔮 Cosmic Personality Reading
+</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+rel="stylesheet"
+href="animations.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Animated Background -->
+
+<div id="galaxy">
+
+<div id="stars"></div>
+
+<div id="stars2"></div>
+
+<div id="stars3"></div>
+
+<div id="nebula"></div>
+
+<div id="shootingStars"></div>
+
+</div>
+
+<!-- Music -->
+
+<audio
+id="bgMusic"
+loop>
+
+<source
+src="assets/audio/mystic.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<!-- Main Card -->
+
+<div class="glass-card">
+
+<div class="logo">
+
+🔮
+
+</div>
+
+<h1>
+
+Cosmic Personality Reading
+
+</h1>
+
+<p class="subtitle">
+
+Discover your inspirational cosmic profile
+
+</p>
+
+<div class="crystal-ball">
+
+<div class="orb">
+
+<div class="innerGlow"></div>
+
+</div>
+
+</div>
+
+<form
+id="readingForm">
+
+<div class="field">
+
+<label>
+
+Your Name
+
+</label>
+
+<input
+id="name"
+type="text"
+placeholder="Optional">
+
+</div>
+
+<div class="field">
+
+<label>
+
+Date of Birth
+
+</label>
+
+<input
+id="dob"
+type="date"
+required>
+
+</div>
+
+<div class="field">
+
+<label>
+
+Time of Birth
+
+</label>
+
+<input
+id="time"
+type="time"
+required>
+
+</div>
+
+<div class="field">
+
+<label>
+
+Place of Birth
+
+</label>
+
+<input
+id="place"
+type="text"
+placeholder="City / Place"
+required>
+
+</div>
+
+<button
+type="button"
+id="generateBtn"
+onclick="startReading()">
+
+✨ Generate My Reading
+
+</button>
+
+</form>
+
+<!-- Loading Screen -->
+
+<div
+id="loadingPanel"
+class="hidden">
+
+<div class="loaderCircle"></div>
+
+<h2>
+
+Connecting with the Cosmos...
+
+</h2>
+
+<p
+id="typingText">
+
+Preparing your personalized inspiration...
+
+</p>
+
+</div>
+
+<!-- Result -->
+
+<div
+id="resultCard"
+class="hidden">
+
+<div
+id="zodiacIcon"></div>
+
+<h2
+id="zodiacName">
+
+</h2>
+
+<div
+id="readingText">
+
+</div>
+
+<div
+class="infoGrid">
+
+<div>
+
+<h4>
+
+Lucky Number
+
+</h4>
+
+<p
+id="luckyNumber">
+
+</p>
+
+</div>
+
+<div>
+
+<h4>
+
+Lucky Color
+
+</h4>
+
+<p
+id="luckyColor">
+
+</p>
+
+</div>
+
+<div>
+
+<h4>
+
+Lucky Gemstone
+
+</h4>
+
+<p
+id="gemstone">
+
+</p>
+
+</div>
+
+<div>
+
+<h4>
+
+Today's Affirmation
+
+</h4>
+
+<p
+id="affirmation">
+
+</p>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+onclick="shareReading()">
+
+📤 Share
+
+</button>
+
+<button
+onclick="downloadReading()">
+
+📥 Download
+
+</button>
+
+<button
+onclick="toggleMusic()">
+
+🎵 Music
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="zodiac.js"></script>
+<script src="typing.js"></script>
+<script src="animations.js"></script>
+<script src="share.js"></script>
+<script src="music.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
